@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: api
+Version: 1.0.1
+Summary: invest product api
+Home-page: UNKNOWN
+License: UNKNOWN
+Keywords: finance,invest,python
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# fintech_product_data
+Crawling stock and future data
+
+
