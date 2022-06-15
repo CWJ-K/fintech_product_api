@@ -1,0 +1,38 @@
+stages:         
+  - test
+  - build
+  - deploy
+
+test-api: 
+    stage: test
+    image: continuumio/miniconda3:4.3.27
+    before_script:
+      - pip install pipenv==2020.6.2
+      - pipenv sync
+      - python3 genenv.py
+    script:
+      pipenv run pytest --cov-report term-missing --cov-config=.coveragerc --cov=./api/ tests/
+    only:
+        refs:
+          - merge_requests
+
+build-docker-image:
+    stage: build
+    before_script:
+      - docker login -u "louisekr" -p ${DOCKER_HUB_TOKEN}
+    script: 
+      - make build-image
+      - make push-image
+    tags:
+      - build_image
+    only:
+      - tags 
+
+deploy-api:
+    stage: deploy
+    script:
+      - make deploy-api
+    tags:
+      - build_image
+    only:
+      - tags 
