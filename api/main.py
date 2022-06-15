@@ -29,10 +29,10 @@ def taiwan_stock_price(
     end_date: str = "",
 ):
     sql = f"""
-    SELECT * FROM taiwan_stock_price
+    SELECT * FROM twse_crawler
     WHERE StockID = '{stock_id}'
     and Date >= '{start_date}'
-    and Data <= '{end_date}'
+    and Date <= '{end_date}'
     """
     mysql_conn = get_mysql_financialdata_conn()
     raw_data = pd.read_sql(sql, con=mysql_conn)
