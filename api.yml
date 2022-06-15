@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   api:
-    image: api:1.0.1
+    image: api:${GIT_TAG}
     ports:
       - 8888:8888
     hostname: 'api'
